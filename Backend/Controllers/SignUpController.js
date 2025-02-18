@@ -51,8 +51,6 @@ const deleteData=async(req,res)=>{
         console.log("Something went wrong:", err);
         res.status(404).json({ message: "Data not Deleted" });
     }
-}
-
-
+};
 
 module.exports = {signup,getData,putData,deleteData};
