@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -16,9 +17,11 @@ const RegisterForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
+  
+      const response = await axios.post("http://localhost:4000/Data/signup", formData);
+    
   };
 
   return (
@@ -27,12 +30,26 @@ const RegisterForm = () => {
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="name" className="block font-medium">Name</label>
-          <input type="text" id="name" name="name" className="w-full p-2 border rounded-lg" onChange={handleChange} />
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            className="w-full p-2 border rounded-lg" 
+            onChange={handleChange} 
+            value={formData.name}
+          />
         </div>
 
         <div>
           <label htmlFor="lastname" className="block font-medium">Lastname</label>
-          <input type="text" name="lastname" id="lastname" className="w-full p-2 border rounded-lg" onChange={handleChange} />
+          <input 
+            type="text" 
+            name="lastname" 
+            id="lastname" 
+            className="w-full p-2 border rounded-lg" 
+            onChange={handleChange} 
+            value={formData.lastname}
+          />
         </div>
 
         <div>
@@ -52,22 +69,50 @@ const RegisterForm = () => {
 
         <div>
           <label htmlFor="email" className="block font-medium">Email</label>
-          <input type="email" name="email" id="email" className="w-full p-2 border rounded-lg" onChange={handleChange} />
+          <input 
+            type="email" 
+            name="email" 
+            id="email" 
+            className="w-full p-2 border rounded-lg" 
+            onChange={handleChange} 
+            value={formData.email}
+          />
         </div>
 
         <div>
           <label htmlFor="password" className="block font-medium">Password</label>
-          <input type="password" name="password" id="password" className="w-full p-2 border rounded-lg" onChange={handleChange} />
+          <input 
+            type="password" 
+            name="password" 
+            id="password" 
+            className="w-full p-2 border rounded-lg" 
+            onChange={handleChange} 
+            value={formData.password}
+          />
         </div>
 
         <div>
           <label htmlFor="phone" className="block font-medium">Phone</label>
-          <input type="text" name="phone" id="phone" className="w-full p-2 border rounded-lg" onChange={handleChange} />
+          <input 
+            type="text" 
+            name="phone" 
+            id="phone" 
+            className="w-full p-2 border rounded-lg" 
+            onChange={handleChange} 
+            value={formData.phone}
+          />
         </div>
 
         <div className="md:col-span-2">
           <label htmlFor="address" className="block font-medium">Address</label>
-          <textarea name="address" id="address" rows="4" className="w-full p-2 border rounded-lg" onChange={handleChange} />
+          <textarea 
+            name="address" 
+            id="address" 
+            rows="4" 
+            className="w-full p-2 border rounded-lg" 
+            onChange={handleChange} 
+            value={formData.address}
+          />
         </div>
 
         <div className="md:col-span-2">
