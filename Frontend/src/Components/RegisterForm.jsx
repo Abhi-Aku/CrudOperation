@@ -13,13 +13,14 @@ const RegisterForm = () => {
   });
 
   const handleChange = (event) => {
+    event.preventDefault();
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-try{
+    try{
+  event.preventDefault();
   const response = await axios.post("http://localhost:4000/Data/signup", formData);
   console.log (response)
 
