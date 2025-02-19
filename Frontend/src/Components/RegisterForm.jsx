@@ -19,8 +19,16 @@ const RegisterForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+try{
+  const response = await axios.post("http://localhost:4000/Data/signup", formData);
+  console.log (response)
+
+}  catch(err){
+  console.log("Error Data send");
   
-      const response = await axios.post("http://localhost:4000/Data/signup", formData);
+}    
+
+
     
   };
 
