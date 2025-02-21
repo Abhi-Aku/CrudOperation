@@ -13,24 +13,19 @@ const RegisterForm = () => {
   });
 
   const handleChange = (event) => {
-    event.preventDefault();
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (event) => {
-    try{
-  event.preventDefault();
-  const response = await axios.post("http://localhost:4000/Data/signup", formData);
-  console.log (response)
-
-}  catch(err){
-  console.log("Error Data send");
-  
-}    
-
-
-    
+    event.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:4000/Data/signup", formData);
+      alert("Data Sent Successfully");
+      console.log(response);
+    } catch (err) {
+      console.log("Error Data send", err);
+    }
   };
 
   return (

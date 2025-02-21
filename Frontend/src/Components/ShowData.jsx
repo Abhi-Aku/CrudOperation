@@ -73,7 +73,7 @@ const ShowData = ({}) => {
           </tbody>
         </table>
       </div>
-      {updateData && <UpdateData  onClose={() => setUpdateData(false)} />}
+      {updateData && <UpdateData  onClose={() => setUpdateData(false)}  value={users}/>}
       
     </div>
   );
