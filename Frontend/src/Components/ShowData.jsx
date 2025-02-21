@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import UpdateData from "./UpdateData";
 
-const ShowData = () => {
+const ShowData = ({}) => {
   const [users, setUsers] = useState([]);
+  const[updateData,setUpdateData]=useState(false);
 
   const fetchData = async () => {
     try {
@@ -12,12 +14,24 @@ const ShowData = () => {
       console.error("Error fetching data:", error);
     }
   };
-
   useEffect(() => {
     fetchData();
   }, []);
+  
+  
+//  Delete Data 
 
-
+  const handleDelete = async (id) => {
+    try {
+     const responce= await axios.delete(`http://localhost:4000/Data/signup/${id}`);
+      setUsers(users.filter((user) => user._id !== id));
+    confirm('aru you sure delete');
+      console.log("Data Deleted successfully", responce);
+    } catch (error) {
+      console.error("Error deleting data:", error);
+    }
+  };
+  
 
 
 
@@ -49,14 +63,18 @@ const ShowData = () => {
                 <td className="py-2 px-4">{user.phone}</td>
                 <td className="py-2 px-4">{user.address}</td>
                 <th className="py-2 px-4 text-left flex justify-center items-center gap-3">
-                <button className="hover:underline">Edit</button>                
-                <button className="hover:underline">Delete</button>                
+                <button  
+                 onClick={() => setUpdateData(true)}
+                className="hover:underline">Edit</button>                
+                <button  onClick={() => handleDelete(user._id)} className="hover:underline">Delete</button>                
                 </th>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {updateData && <UpdateData  onClose={() => setUpdateData(false)} />}
+      
     </div>
   );
 };
