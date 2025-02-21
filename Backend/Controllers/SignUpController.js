@@ -1,9 +1,22 @@
 const SignUp = require('../Models/SignUpModels');
+const {authorize,generateAccessToken}=require('../JwtAuthorization');
+
+
 
 const signup = async (req, res) => {
     try {
         const { name, lastname, gender, email, password, phone, address } = req.body;
         const user = await SignUp.create({ name, lastname, gender, email, password, phone, address });
+        const paylod={
+            user:user._id,
+            name:user.name,
+        };
+        const token=generateAccessToken(paylod);
+
+
+        res.status(200).json({ message: "Data Sent Successfully", user,token });
+
+
         console.log("Data Saved");
         res.status(200).json({ message: "Data Sent Successfully", user });
     } catch (err) {
