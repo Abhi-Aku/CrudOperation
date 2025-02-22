@@ -44,7 +44,7 @@ const UpdateData = () => {
             name="name" 
             className="w-full p-2 border rounded-lg" 
             onChange={handleChange} 
-            value={formData.name || ''}
+            value={formData.name }
           />
         </div>
 
@@ -56,7 +56,7 @@ const UpdateData = () => {
             id="lastname" 
             className="w-full p-2 border rounded-lg" 
             onChange={handleChange} 
-            value={formData.lastname || ''}
+            value={formData.lastname }
           />
         </div>
 
@@ -67,7 +67,7 @@ const UpdateData = () => {
             id="gender" 
             className="w-full p-2 border rounded-lg" 
             onChange={handleChange} 
-            value={formData.gender || ''}
+            value={formData.gender }
           >
             <option value="">Select Gender</option>
             <option value="male">Male</option>
@@ -83,7 +83,7 @@ const UpdateData = () => {
             id="email" 
             className="w-full p-2 border rounded-lg" 
             onChange={handleChange} 
-            value={formData.email || ''}
+            value={formData.email }
           />
         </div>
 
@@ -95,7 +95,7 @@ const UpdateData = () => {
             id="password" 
             className="w-full p-2 border rounded-lg" 
             onChange={handleChange} 
-            value={formData.password || ''}
+            value={formData.password }
           />
         </div>
 
@@ -107,7 +107,7 @@ const UpdateData = () => {
             id="phone" 
             className="w-full p-2 border rounded-lg" 
             onChange={handleChange} 
-            value={formData.phone || ''}
+            value={formData.phone }
           />
         </div>
 
@@ -119,7 +119,7 @@ const UpdateData = () => {
             rows="4" 
             className="w-full p-2 border rounded-lg" 
             onChange={handleChange} 
-            value={formData.address || ''}
+            value={formData.address }
           />
         </div>
 
