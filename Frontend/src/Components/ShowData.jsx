@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import UpdateData from "./UpdateData";
+import { useNavigate } from "react-router-dom";
 
-const ShowData = ({}) => {
+const ShowData = () => {
+  const navigator = useNavigate();
   const [users, setUsers] = useState([]);
-  const[updateData,setUpdateData]=useState(false);
 
   const fetchData = async () => {
     try {
@@ -31,6 +31,10 @@ const ShowData = ({}) => {
       console.error("Error deleting data:", error);
     }
   };
+
+  const GotoUpdate=()=>{
+    navigator('/updateData');
+  }
   
 
 
@@ -64,8 +68,9 @@ const ShowData = ({}) => {
                 <td className="py-2 px-4">{user.address}</td>
                 <th className="py-2 px-4 text-left flex justify-center items-center gap-3">
                 <button  
-                 onClick={() => setUpdateData(true)}
-                className="hover:underline">Edit</button>                
+                 onClick={GotoUpdate}
+                className="hover:underline">Edit</button> 
+                                
                 <button  onClick={() => handleDelete(user._id)} className="hover:underline">Delete</button>                
                 </th>
               </tr>
@@ -73,7 +78,6 @@ const ShowData = ({}) => {
           </tbody>
         </table>
       </div>
-      {updateData && <UpdateData  onClose={() => setUpdateData(false)}  value={users}/>}
       
     </div>
   );

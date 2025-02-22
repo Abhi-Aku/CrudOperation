@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { IoCloseSharp } from "react-icons/io5";
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const UpdateData = ({ onClose,users,id}) => { 
+const UpdateData = () => {
+  const { id } = useParams();
+
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',
@@ -18,24 +20,22 @@ const UpdateData = ({ onClose,users,id}) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleUpdate = async (event) => {
+  const updateData = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:4000/Data/signup/${id}`, formData);
+      const response = await axios.post(`http://localhost:4000/Data/signup/${id}`, formData);
       alert("Data Updated Successfully");
       console.log(response);
     } catch (err) {
-      console.log("Error updating data", err);
+      console.log("Error Data send", err);
     }
   };
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md mt-10">
-      <div>
-        <IoCloseSharp onClick={onClose} />
-      </div>
-      <h2 className="text-2xl font-bold text-center mb-4">Update Data</h2>
-      <form onSubmit={handleUpdate} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <h2 className="text-2xl font-bold text-center mb-4">Register</h2>
+      <form onSubmit={updateData} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
         <div>
           <label htmlFor="name" className="block font-medium">Name</label>
           <input 
@@ -44,7 +44,7 @@ const UpdateData = ({ onClose,users,id}) => {
             name="name" 
             className="w-full p-2 border rounded-lg" 
             onChange={handleChange} 
-            value={formData.name}
+            value={formData.name || ''}
           />
         </div>
 
@@ -56,7 +56,7 @@ const UpdateData = ({ onClose,users,id}) => {
             id="lastname" 
             className="w-full p-2 border rounded-lg" 
             onChange={handleChange} 
-            value={formData.lastname}
+            value={formData.lastname || ''}
           />
         </div>
 
@@ -67,7 +67,7 @@ const UpdateData = ({ onClose,users,id}) => {
             id="gender" 
             className="w-full p-2 border rounded-lg" 
             onChange={handleChange} 
-            value={formData.gender}
+            value={formData.gender || ''}
           >
             <option value="">Select Gender</option>
             <option value="male">Male</option>
@@ -83,7 +83,7 @@ const UpdateData = ({ onClose,users,id}) => {
             id="email" 
             className="w-full p-2 border rounded-lg" 
             onChange={handleChange} 
-            value={formData.email}
+            value={formData.email || ''}
           />
         </div>
 
@@ -95,7 +95,7 @@ const UpdateData = ({ onClose,users,id}) => {
             id="password" 
             className="w-full p-2 border rounded-lg" 
             onChange={handleChange} 
-            value={formData.password}
+            value={formData.password || ''}
           />
         </div>
 
@@ -107,7 +107,7 @@ const UpdateData = ({ onClose,users,id}) => {
             id="phone" 
             className="w-full p-2 border rounded-lg" 
             onChange={handleChange} 
-            value={formData.phone}
+            value={formData.phone || ''}
           />
         </div>
 
@@ -119,14 +119,17 @@ const UpdateData = ({ onClose,users,id}) => {
             rows="4" 
             className="w-full p-2 border rounded-lg" 
             onChange={handleChange} 
-            value={formData.address}
+            value={formData.address || ''}
           />
         </div>
 
         <div className="md:col-span-2">
-          <button
-           onClick={() => handleUpdate (users._id)} 
-           className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Update Data</button>
+          <button 
+            type="submit" 
+            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
+          >
+            Data Update
+          </button>
         </div>
       </form>
     </div>

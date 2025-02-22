@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
 
 const RegisterForm = () => {
+    const Navigation= useNavigate();
+  
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',
@@ -23,10 +27,13 @@ const RegisterForm = () => {
       const response = await axios.post("http://localhost:4000/Data/signup", formData);
       alert("Data Sent Successfully");
       console.log(response);
+      Navigation('/show');
     } catch (err) {
       console.log("Error Data send", err);
     }
   };
+
+  
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md mt-10">
@@ -120,7 +127,8 @@ const RegisterForm = () => {
         </div>
 
         <div className="md:col-span-2">
-          <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Submit</button>
+          <button 
+          type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Submit</button>
         </div>
       </form>
     </div>

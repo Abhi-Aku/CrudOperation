@@ -21,7 +21,6 @@ const signup = async (req, res) => {
         res.status(200).json({ message: "Data Sent Successfully", user });
     } catch (err) {
         console.log("Something went wrong:", err.message);
-        res.status(500).json({ message: err.message });
     }
 };
 // getData
