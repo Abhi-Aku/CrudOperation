@@ -1,18 +1,18 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-require('dotenv').config()
+const express=require('express');
+const app=express();
 
-const app = express();
-app.use(cors()); 
-app.use(bodyParser.json());
-const port = 4000;
- const db = require('./db');
+app.use(express.json())
+app.use(express.urlencoded({extended:true}));
 
-const kubhi=require('./Routers/SignUpRouter')
-app.use('/Data',kubhi)
+ require('dotenv').config();
+ port=process.env.PORT || 4000;
 
+ require('./db')
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+const Data=require('./Routers/Registration');
+
+ app.use('/apiPost',Data)
+
+ app.listen(port,()=>{
+    console.log(`server is running on port http://localhost:${port}`);
+ })
