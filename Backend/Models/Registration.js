@@ -10,4 +10,7 @@ const registrationSchema=new mongoose.Schema({
     adderss :{type:String,required:true},
 })
 
+
+
+
 module.exports=mongoose.model('Registration',registrationSchema)

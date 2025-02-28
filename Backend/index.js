@@ -8,12 +8,17 @@ app.use(express.urlencoded({extended:true}));
  port=process.env.PORT || 4000;
 
  require('./db')
-
+// Registration Api 
 const Data=require('./Routers/Registration');
  app.use('/apiPost',Data)
 
+//lead Api 
  const lead=require('./Routers/LeadRouter');
  app.use('/leads',lead)
+
+
+
+
 
  app.listen(port,()=>{
     console.log(`server is running on port http://localhost:${port}`);

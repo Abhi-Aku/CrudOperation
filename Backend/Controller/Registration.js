@@ -2,7 +2,7 @@
 const Registration=require('../Models/Registration')
 
 module.exports.registration=async(req,res)=>{
-    const{name,lastname,gender,phone,email,password,adderss}=req.body
+    const{name,lastname,gender,phone,email,password,adderss}=req.body;
     try{
         const responce=await  Registration.create({
             name,
@@ -11,7 +11,8 @@ module.exports.registration=async(req,res)=>{
             phone,
             email,
             password,
-            adderss
+            adderss,
+            
         });
         res.status(200).json({massage :"registration success" ,responce})
     }catch(err){
@@ -75,6 +76,10 @@ module.exports.login = async (req, res) => {
         res.status(400).json({ message: "Something went wrong" });
     }
 };
+// multer
+
+
+
 
 
 

@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const registration = require('../Controller/Registration'); 
+const registration = require('../Controller/Registration');
+
+
+
+
 
 router.post('/registration', registration.registration);
 router.get('/registration', registration.GetData);
