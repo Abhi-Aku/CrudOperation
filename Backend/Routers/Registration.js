@@ -6,5 +6,6 @@ router.post('/registration', registration.registration);
 router.get('/registration', registration.GetData);
 router.put('/registration/:id', registration.PutData);
 router.delete('/registration/:id', registration.DeleteData);
-
+// login routes
+router.post('/login', registration.login);
 module.exports = router;

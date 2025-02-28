@@ -55,3 +55,27 @@ module.exports.DeleteData = async (req, res) => {
         res.status(400).json({ message: "Something went wrong", err });
     }
 };
+
+//  login controller
+
+module.exports.login = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const response = await Registration.findOne({ email ,password}); 
+        if (!response) {
+            return res.status(400).json({ message: "Something went wrong" });
+        }
+        if (response.password !== password) {
+            return res.status(200).json({ message: "Login success", response });
+        } else {
+            return res.status(400).json({ message: "Login not successful" });
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({ message: "Something went wrong" });
+    }
+};
+
+
+
+

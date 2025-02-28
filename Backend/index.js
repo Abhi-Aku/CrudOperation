@@ -10,8 +10,10 @@ app.use(express.urlencoded({extended:true}));
  require('./db')
 
 const Data=require('./Routers/Registration');
-
  app.use('/apiPost',Data)
+
+ const lead=require('./Routers/LeadRouter');
+ app.use('/leads',lead)
 
  app.listen(port,()=>{
     console.log(`server is running on port http://localhost:${port}`);
