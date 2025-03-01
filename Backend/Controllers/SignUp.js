@@ -1,3 +1,4 @@
+var jwt = require('jsonwebtoken');
 const SignUp = require("../Models/SignUp");
 
 module.exports.SignUpPost = async (req, res) => {
@@ -48,25 +49,27 @@ module.exports.SignUpDelete = async (req, res) => {
     }
 };
 
-// login
 
 module.exports.SignUpLogin = async (req, res) => {
-    const { email, password } = req.body;
-    try {
-        const response = await SignUp.findOne({ email,password });
-        if (!response) {
-            return res.status(400).json({ message: "Data Not Found" });
+    const {email,password} = req.body;
+    try{
+        const responce=await SignUp.findOne({email});
+        if(!responce){
+            return res.status(400).json({message:"Data Not Found",responce});
         }
-        if (response.password === password) {
-            return res.status(200).json({ message: "Login Successfully", response });
-        } else {
-            return res.status(400).json({ message: "Incorrect Password" });
+        if(responce.password !==password){
+            return res.status(400).json({message:"Incorrect Password",responce});
         }
-    } catch (err) {
+
+      const token = jwt.sign({ id: responce._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+        res.status(200).json({message:"Login Successfully",responce,token});
+
+    }catch(err){
         console.log(err);
-        res.status(500).json({ message: "Server Error", error: err.message });
+        res.status(500).json({message:"Server Error",error:err.message});   
+
     }
-};
+}
 
 
 
