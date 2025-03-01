@@ -1,24 +1,21 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from './Components/Home';
+import Dashboard from './Components/Dashbord';
 import Registration from './Components/Registration';
-import Dashbord from './Components/Dashbord';
-import Login from './Components/Login';
-import Table from './Table';
+import {Home}from './Components/Home'; // Ensure correct import
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/dashbord' element={<Dashbord />}>
-          <Route path='registration' element={<Registration />} />
-          <Route path='login' element={<Login />} />
-          <Route path='table' element={<Table />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/dashbord" element={<Dashboard />}>
+          {/* Fix: Remove leading '/' in the nested path */}
+          <Route path="registration" element={<Registration />} />
         </Route>
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
