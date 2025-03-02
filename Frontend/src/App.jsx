@@ -1,18 +1,16 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './Components/Dashbord';
 import Registration from './Components/Registration';
-import {Home}from './Components/Home'; // Ensure correct import
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './Components/Home';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashbord" element={<Dashboard />}>
-          {/* Fix: Remove leading '/' in the nested path */}
-          <Route path="registration" element={<Registration />} />
-        </Route>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/registration" element={<Registration />} />
       </Routes>
     </BrowserRouter>
   );
