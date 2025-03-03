@@ -16,10 +16,10 @@ const Home = () => {
     <NavLink to="/" className="hover:font-black cursor-pointer">
       <li>Home</li>
     </NavLink>
-    <NavLink to="/registration" className="hover:font-black cursor-pointer">
+    <NavLink to="" className="hover:font-black cursor-pointer">
       <li >Registration</li>
     </NavLink>
-    <NavLink to="" className="hover:font-black cursor-pointer">
+    <NavLink to="/profile" className="hover:font-black cursor-pointer">
       <li>Profile</li>
     </NavLink>
     <NavLink to="" className="hover:font-black cursor-pointer">
@@ -38,7 +38,7 @@ const Home = () => {
 
       {/* Mobile Navigation */}
       {menuOpen && (
-        <nav className="absolute top-14 left-0 w-full bg-cyan-600 p-5 shadow-md md:hidden">
+        <nav className="absolute top-14 left-0 w-full bg-cyan-600 p-5 mt-10 shadow-md md:hidden">
           <ul className="flex flex-col space-y-4 text-center">
             <li className="hover:font-black cursor-pointer">Home</li>
             <li className="hover:font-black cursor-pointer">Registration</li>

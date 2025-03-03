@@ -63,6 +63,7 @@ module.exports.SignUpLogin = async (req, res) => {
 
       const token = jwt.sign({ id: responce._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
         res.status(200).json({message:"Login Successfully",responce,token});
+        console.log(token);
 
     }catch(err){
         console.log(err);

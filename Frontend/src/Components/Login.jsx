@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 const Login= () => {
   const Navigation= useNavigate();
   const [formData, setFormData] = useState({
- 
     email: '',
     password: ''
   });
@@ -26,14 +25,17 @@ const Login= () => {
       console.log(response);
       alert("Login Succes");
       setFormData({
-        name: '',
-        lastname: '',
-        gender: '',
-        phone: '',
         email: '',
         password: '',
-        address: '',
+       
       })
+      // token save localstorage
+      
+      const result=await response.json();
+      const token=result.token;
+      localStorage.setItem('token',token);
+      localStorage.setItem('loginTimestamp', Date.now());
+       
       Navigation('/dashboard');
 
     } catch (error) {
