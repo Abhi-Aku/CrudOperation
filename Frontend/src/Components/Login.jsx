@@ -29,18 +29,18 @@ const Login= () => {
         password: '',
        
       })
-      // token save localstorage
+      Navigation('/dashboard');
       
-      const result=await response.json();
-      const token=result.token;
+      // token save localstorage
+       console.log(response.data.token)
+
+      const token=response.data.token;
       localStorage.setItem('token',token);
       localStorage.setItem('loginTimestamp', Date.now());
        
-      Navigation('/dashboard');
-
     } catch (error) {
       console.log("Data not send",error);
-      alert("password error")
+     
     }
   };
 
