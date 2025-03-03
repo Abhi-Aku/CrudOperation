@@ -48,7 +48,7 @@ module.exports.SignUpDelete = async (req, res) => {
         res.status(400).json({ message: "Data Not Deleted" });
     }
 };
-
+// login api
 
 module.exports.SignUpLogin = async (req, res) => {
     const {email,password} = req.body;

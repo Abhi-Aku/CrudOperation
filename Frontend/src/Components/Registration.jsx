@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
+  const Navigation= useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',
@@ -33,6 +35,8 @@ const Registration = () => {
         password: '',
         address: '',
       })
+      Navigation('/Login');
+
     } catch (error) {
       console.log("Data not send",error);
     }
