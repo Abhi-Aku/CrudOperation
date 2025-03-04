@@ -16,10 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 const Data = require('./Routers/SignUp');
 app.use('/SignUp', Data);
 
-// leads
-const Dataleads=require('./Routers/LeadesRout')
-app.use('/LeadData',Dataleads);
-
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`);
 });

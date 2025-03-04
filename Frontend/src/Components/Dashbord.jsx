@@ -1,10 +1,36 @@
-import React, { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import React, { useEffect, useState,} from 'react';
+import { NavLink, Outlet,useNavigate } from 'react-router-dom';
 import Registration from './Registration';
 
 const Dashboard = () => {
+  const Navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+
+
+  const logoutButton = () => {
+    localStorage.removeItem('token');
+    Navigate('/login');
+    console.log('remove token');
+  };
+
+
+  // protect router 
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      Navigate('/login'); 
+    }
+  }, [Navigate]);
+
+
+
+
+
+
+
+
 
   return (
     <section className="flex h-screen p-5">
@@ -27,7 +53,7 @@ const Dashboard = () => {
       </div>
 
       <main className="w-4/5 p-5 bg-gray-100">
-        <div className="flex justify-between mb-5">
+        <div className="flex justify-evenly mb-5">
           <input 
             type="text" 
             placeholder="Search..." 
@@ -40,6 +66,13 @@ const Dashboard = () => {
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
           >
             Add
+          </button>
+          {/* logout botton */}
+          <button
+          onClick={logoutButton}
+            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Logout
           </button>
         </div>
         {isOpen && <Registration onClose={() => setIsOpen(false)} />}
