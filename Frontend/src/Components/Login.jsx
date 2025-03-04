@@ -2,9 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
-const Login= () => {
-  const Navigation= useNavigate();
+const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -23,24 +22,23 @@ const Login= () => {
     try {
       const response = await axios.post('http://localhost:4000/SignUp/api/login', formData);
       console.log(response);
-      alert("Login Succes");
+      alert("Login Success");
+
       setFormData({
         email: '',
         password: '',
-       
-      })
-      Navigation('/dashboard');
-      
-      // token save localstorage
-       console.log(response.data.token)
+      });
 
-      const token=response.data.token;
-      localStorage.setItem('token',token);
+      navigate('/dashboard');
+
+      // Save token in localStorage
+      console.log(response.data.token);
+     const token = response.data.token;
+      localStorage.setItem('token',token  );
       localStorage.setItem('loginTimestamp', Date.now());
-       
+
     } catch (error) {
-      console.log("Data not send",error);
-     
+      console.log("Data not sent", error);
     }
   };
 
@@ -85,5 +83,3 @@ const Login= () => {
 };
 
 export default Login;
-
-
