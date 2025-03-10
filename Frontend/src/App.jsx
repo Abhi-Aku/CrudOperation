@@ -4,8 +4,8 @@ import Dashboard from './Components/Dashbord';
 import Registration from './Components/Registration';
 import Home from './Components/Home';
 import Login from './Components/Login';
-// import Profile from './Components/Profile ';
-// import Pootected from './Components/Pootected';
+import Profile from './Components/Profile ';
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -14,7 +14,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/registration" element={<Registration />} />
          <Route path="/login" element={<Login />} />
-         {/* <Route path="/profile" element={<Pootected component={Profile} /> } /> */}
+         <Route path="/profile" element={<Profile/> } />
       </Routes>
     </BrowserRouter>
   );

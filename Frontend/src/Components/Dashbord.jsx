@@ -1,6 +1,7 @@
 import React, { useEffect, useState,} from 'react';
 import { NavLink, Outlet,useNavigate } from 'react-router-dom';
 import Registration from './Registration';
+import { GetData } from './GetData';
 
 const Dashboard = () => {
   const Navigate = useNavigate();
@@ -76,7 +77,7 @@ const Dashboard = () => {
           </button>
         </div>
         {isOpen && <Registration onClose={() => setIsOpen(false)} />}
-          
+          <GetData/>
         <Outlet />
       </main>
     </section>
